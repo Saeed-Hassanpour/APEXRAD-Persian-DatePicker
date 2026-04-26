@@ -46,6 +46,17 @@
 
 ## Usage
 
+### Set NLS DATE
+
+You must to change NLS_CALENDAR , NLS_DATE_FORMAT  [Application / Edit Security Attributes(Database Session)]
+
+```
+BEGIN
+   EXECUTE immediate 'ALTER SESSION SET NLS_CALENDAR=PERSIAN';
+   EXECUTE immediate 'ALTER SESSION SET NLS_DATE_FORMAT=''YYYY/MM/DD''';
+END;
+```
+
 ### Page Item
 
 1. Create a page item
