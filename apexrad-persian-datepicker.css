@@ -1,0 +1,475 @@
+/**
+ * APEXRAD Persian Date Picker — CSS
+ *
+ * Layout:
+ *  Header: [ ‹ Month › ] .............. [ ▲ Year ▼ ]  (RTL)
+ *  Footer: [ تأیید ] [ امروز ] [spacer] [ 🕐 HH◇:MM◇ ]
+ */
+
+/* ── Hidden session-state input ──────────────────────────────────── */
+input.apexrad-pdp-input {
+  position: absolute !important; width: 1px !important; height: 1px !important;
+  overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   WRAPPER
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-wrapper {
+  display: flex; flex-direction: row; align-items: stretch;
+  width: 100%; box-sizing: border-box;
+}
+.apexrad-pdp-wrapper--disabled { opacity: 0.65; pointer-events: none; }
+
+/* unicode-bidi: plaintext lets the browser determine paragraph direction
+   from the value's first strong character — so Persian date formats
+   (starting with a Persian letter like دوشنبه) automatically display RTL,
+   while numeric formats (starting with 1405) display LTR. No JS bidi hacks needed. */
+.apexrad-pdp-wrapper .apexrad-pdp-display {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: plaintext;
+}
+.u-RTL .apexrad-pdp-wrapper .apexrad-pdp-display {
+  direction: ltr;
+  text-align: right;
+  unicode-bidi: plaintext;
+}
+
+.apexrad-pdp-ltr .apexrad-pdp-display {
+  order: 1; border-inline-end: none;
+  border-start-end-radius: 0; border-end-end-radius: 0;
+}
+.apexrad-pdp-rtl .apexrad-pdp-display {
+  order: 2; border-inline-start: none;
+  border-start-start-radius: 0; border-end-start-radius: 0;
+}
+.apexrad-pdp-display[readonly]       { cursor: pointer; }
+.apexrad-pdp-display:not([readonly]) { cursor: text; }
+.apexrad-pdp-display--err            { border-color: var(--a-palette-danger, #C73737) !important; }
+
+.apexrad-pdp-ltr .a-Button--calendar { order: 2; }
+.apexrad-pdp-rtl .a-Button--calendar { order: 1; }
+
+/* ══════════════════════════════════════════════════════════════════
+   POPUP
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-popup {
+  position: fixed; z-index: 20000; width: auto; max-width: 317px;
+  box-sizing: border-box; direction: rtl;
+  font-family: var(--a-base-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif);
+  font-size: var(--a-base-html-font-size, 13px); line-height: 1.5;
+  color: var(--a-field-text-color, #404040);
+  background-color: var(--a-field-container-background-color, #fff);
+  border: 1px solid var(--a-field-container-border-color, #ddd);
+  border-radius: var(--a-field-container-border-radius, 0.375rem);
+  box-shadow: var(--a-field-container-shadow, 0 4px 16px rgba(0,0,0,.14));
+  overflow: hidden;
+  animation: pdpFadeIn 0.1s ease-out;
+}
+@keyframes pdpFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HEADER
+   RTL layout: year-block (right) | month-block (left, flex:1)
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-header {
+  display: flex; align-items: center;
+  padding: 8px 10px 6px;
+  user-select: none; direction: rtl;
+  background-color: var(--oj-core-color-disabled-1, #f5f5f5);
+  gap: 4px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+/* ── Year block: [ ▲ | year-lbl | ▼ ] inline ───────────────────── */
+.apexrad-pdp-year-block {
+  display: flex; align-items: center;
+  flex: 0 0 auto; gap: 2px;
+}
+
+/* Clickable year label */
+.apexrad-pdp-year-lbl {
+  font-size: 1.4em;
+  font-weight: var(--a-base-font-weight-bold, 700);
+  color: var(--oj-core-text-color-primary, var(--a-field-text-color, #1a1a1a));
+  min-width: 44px; text-align: center; padding: 2px 4px;
+  background: transparent; border: 1px solid transparent;
+  border-radius: var(--a-button-border-radius, 0.125rem);
+  cursor: pointer; font-family: inherit; line-height: 1.4;
+  -webkit-appearance: none; appearance: none; outline: none;
+  transition: background-color 0.1s;
+}
+/* year-lbl hover/active disabled per request */
+
+/* Year spinner buttons (▲ ▼) — NOW INLINE, left/right of label */
+
+.apexrad-pdp-year-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.6em;
+  font-weight: var(--a-base-font-weight-bold, 700);
+  color: var(--oj-core-text-color-primary, var(--a-field-text-color, #1a1a1a));
+  min-width: 25px; text-align: center; padding: 0;
+  background: transparent; border: none;
+  border-radius: var(--a-button-border-radius, 0.125rem);
+  cursor: pointer; font-family: inherit; line-height: 1.4;
+  -webkit-appearance: none; appearance: none; outline: none;
+  transition: background-color 0.1s;
+}
+.apexrad-pdp-year-btn:hover { background-color: #fff; border-color: #f0f0f0; }
+
+/* ── Month block: month label only ─────────────────────────────── */
+.apexrad-pdp-month-block {
+  display: flex; align-items: center; justify-content: center; gap: 2px;
+  width: 150px;
+}
+
+/* ── Month arrow block: nav buttons only (right side) ───────────── */
+.apexrad-pdp-month-arrow-block {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  width: 150px;
+  align-items: center;
+}
+
+/* Clickable month label */
+
+.apexrad-pdp-month-lbl {
+  font-size: 1.1em;
+  font-weight: var(--a-base-font-weight-bold, 700);
+  color: var(--oj-core-text-color-primary, var(--a-field-text-color, #1a1a1a));
+  text-align: center; padding: 2px 6px;
+  background: transparent; border: 1px solid transparent;
+  border-radius: var(--a-button-border-radius, 0.125rem);
+  cursor: pointer; font-family: inherit; line-height: 1.6;
+  -webkit-appearance: none; appearance: none; outline: none;
+  transition: background-color 0.1s;
+  white-space: nowrap;
+}
+/* month-lbl hover/active disabled per request */
+
+/* Nav chevron buttons (‹ ›) */
+
+.apexrad-pdp-nav {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; padding: 0; margin: 0;
+  background: transparent; border: 1px solid transparent;
+  border-radius: var(--a-button-border-radius, 0.125rem);
+  cursor: pointer; color: var(--a-field-text-color, #404040);
+  font-size: 24px;   /* ← requested */
+  line-height: 1; font-weight: 400;
+  -webkit-appearance: none; appearance: none; outline: none;
+  transition: background-color 0.1s;
+}
+.apexrad-pdp-nav:hover {
+  background-color: #fff; border-color: #f0f0f0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DROPDOWN OVERLAY
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-dd {
+  position: absolute; top: 0; inset-inline-end: 0;
+  width: 140px; max-height: 100%;
+  overflow-y: auto; background-color: #333;
+  border-radius: var(--a-field-container-border-radius, 0.375rem);
+  box-shadow: 0 4px 20px rgba(0,0,0,.4); z-index: 10;
+  scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.3) transparent;
+}
+.apexrad-pdp-dd::-webkit-scrollbar { width: 4px; }
+.apexrad-pdp-dd::-webkit-scrollbar-thumb { background: rgba(255,255,255,.3); border-radius: 2px; }
+.apexrad-pdp-dd::-webkit-scrollbar-track { background: transparent; }
+.apexrad-pdp-dd-list { list-style: none; margin: 0; padding: 6px 0; }
+.apexrad-pdp-dd-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 16px; color: rgba(255,255,255,.9);
+  font-size: 1.5em; font-weight: 400;
+  cursor: pointer; direction: rtl; transition: background-color 0.08s;
+}
+.apexrad-pdp-dd-item:hover { background-color: rgba(255,255,255,.12); }
+.apexrad-pdp-dd-item--sel {
+  background-color: var(--a-palette-primary, #256FFB) !important;
+  color: #fff !important;
+  font-weight: var(--a-base-font-weight-bold, 700);
+}
+.apexrad-pdp-dd-check::before { content: "✓"; font-size: 13px; line-height: 1; }
+
+/* ══════════════════════════════════════════════════════════════════
+   DAY-OF-WEEK HEADER
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-dow {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  padding: 4px 8px;
+  background-color: var(--oj-core-color-disabled-1, #f5f5f5);
+}
+.apexrad-pdp-dow-cell {
+  text-align: center; padding: 4px 0; line-height: 1.4;
+  font-size: 0.85em;
+  font-weight: var(--a-base-font-weight-bold, 700);
+  color: var(--oj-core-text-color-primary, #404040);
+}
+.apexrad-pdp-dow-cell:last-child { color: var(--a-palette-danger, #C73737); }
+
+/* ══════════════════════════════════════════════════════════════════
+   DAY GRID — circular cells
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-grid { padding: 4px 8px; }
+.apexrad-pdp-grid-row { display: grid; grid-template-columns: repeat(7, 1fr); }
+
+
+.apexrad-pdp-day {
+  display: flex; align-items: center; justify-content: center;
+  height: 36px; width: 100%; padding: 2px; margin: 0;
+  background: transparent; border: none; border-radius: 0;
+  font-size: 0.95em;
+  font-weight: var(--a-base-font-weight-bold, 700);
+  color: var(--a-field-text-color, #404040);
+  font-family: inherit; line-height: 1;
+  cursor: pointer; box-sizing: border-box;
+  -webkit-appearance: none; appearance: none; outline: none;
+  position: relative;
+}
+
+.apexrad-pdp-grid--persian .apexrad-pdp-day {
+  font-size: 1em;
+  font-weight: var(--a-base-font-weight-bold, 800);
+}
+
+/* Circle via ::before */
+.apexrad-pdp-day::before {
+  content: ''; position: absolute; inset: 3px;
+  border-radius: 50%;
+  transition: background-color 0.1s, border-color 0.1s;
+}
+.apexrad-pdp-day span { position: relative; z-index: 1; }
+
+
+.apexrad-pdp-day:hover:not(.apexrad-pdp-day--empty):not(.apexrad-pdp-day--off)::before {
+  background-color: var(--oj-core-color-disabled-2, rgba(37,111,251,.12));
+}
+/* Today: outlined circle */
+.apexrad-pdp-day--today::before { border: 2px solid var(--a-palette-primary, #256FFB); }
+.apexrad-pdp-day--today { color: var(--a-palette-primary, #256FFB); font-weight: var(--a-base-font-weight-bold, 700); }
+/* Selected: filled circle */
+.apexrad-pdp-day--sel::before { background-color: var(--a-palette-primary, #256FFB) !important; border: none !important; }
+.apexrad-pdp-day--sel { color: #fff !important; font-weight: var(--a-base-font-weight-bold, 700); }
+/* Friday & Holiday */
+.apexrad-pdp-day--fri { color: var(--a-palette-danger, #C73737); }
+.apexrad-pdp-day--hol { color: var(--a-palette-danger, #C73737); }
+.apexrad-pdp-day--sel.apexrad-pdp-day--fri,
+.apexrad-pdp-day--sel.apexrad-pdp-day--hol { color: #fff !important; }
+/* Disabled */
+.apexrad-pdp-day--off { color: var(--a-field-text-muted-color, #ccc) !important; cursor: not-allowed; }
+.apexrad-pdp-day--off::before { display: none; }
+.apexrad-pdp-day--off.apexrad-pdp-day--fri,
+.apexrad-pdp-day--off.apexrad-pdp-day--hol { color: var(--a-palette-danger, #C73737) !important; opacity: 0.4; }
+.apexrad-pdp-day--empty { cursor: default; pointer-events: none; }
+.apexrad-pdp-day--empty::before { display: none; }
+
+/* ══════════════════════════════════════════════════════════════════
+   FOOTER — time controls are NOW IN HERE (display-month.png layout)
+   Layout (RTL): [ تأیید ] [ امروز ] [پاک کردن] [auto-spacer] [ 🕐 HH▲▼:MM▲▼ ]
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-footer {
+  display: flex; align-items: center;
+  padding: 6px 10px;
+  border-top: 1px solid var(--a-field-container-border-color, #e0e0e0);
+  direction: rtl; gap: 4px;
+  flex-wrap: nowrap; min-height: 44px;
+  justify-content: space-between;
+  background-color: var(--oj-core-color-disabled-1, #f5f5f5);
+}
+
+/* Time inline block — pushed to the LEFT (RTL end) via margin-inline-start:auto */
+.apexrad-pdp-time-inline {
+  display:     flex;
+  align-items: center;
+  direction:   ltr;        /* time reads left→right */
+  gap:         2px;
+  margin-inline-start: 0;
+}
+
+/* Clock icon */
+.apexrad-pdp-time-icon {
+  display: inline-flex; align-items: center;
+  color: var(--a-field-text-muted-color, #888);
+  font-size: 14px; margin-inline-end: 2px;
+}
+
+/* Time ctrl column.
+   Two variants used:
+   - Spin column: stacks ▲▼ vertically (no value between them)
+   - Value column: single hh/mm button
+   Both use column flex for alignment. */
+.apexrad-pdp-time-ctrl {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+
+/* Time value button (clickable, opens dropdown) */
+.apexrad-pdp-time-inp {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; min-height: 20px;
+  text-align: center;
+  font-size: 1.2em; font-family: var(--a-base-font-family-mono, monospace);
+  font-weight: var(--a-base-font-weight-bold, 700);
+  color: var(--a-field-text-color, #404040);
+  background: transparent; border: none;
+  border-bottom: 2px solid var(--a-field-container-border-color, #ddd);
+  padding: 0 2px; cursor: pointer;
+  -webkit-appearance: none; appearance: none; outline: none;
+  transition: border-color 0.1s;
+}
+.apexrad-pdp-time-inp:hover { border-bottom-color: var(--a-palette-primary, #256FFB); }
+.apexrad-pdp-time-inp.is-active { border-bottom-color: var(--a-palette-primary, #256FFB); color: var(--a-palette-primary, #256FFB); }
+
+.apexrad-pdp-time-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.2em;
+  font-weight: var(--a-base-font-weight-bold, 700);
+  color: var(--oj-core-text-color-primary, var(--a-field-text-color, #1a1a1a));
+  min-width: 25px; text-align: center; padding: 0;
+  background: transparent; border: none;
+  border-radius: var(--a-button-border-radius, 0.125rem);
+  cursor: pointer; font-family: inherit; line-height: 1.2;
+  -webkit-appearance: none; appearance: none; outline: none;
+  transition: background-color 0.1s;
+}
+.apexrad-pdp-time-btn:hover { background-color: #fff; border-color: #f0f0f0; }
+
+.apexrad-pdp-time-sep {
+  font-size: 1em; font-weight: 400; color: var(--a-field-text-color, #404040);
+  align-self: center; padding: 0 1px; padding-bottom: 2px;
+}
+
+/* ── Footer action buttons ──────────────────────────────────────── */
+.apexrad-pdp-foot-btn {
+  -webkit-appearance: none; appearance: none; cursor: pointer; outline: none;
+  font-family: inherit; font-size: 0.90rem;
+  line-height: var(--a-button-line-height, 16px); font-weight: 400;
+  border-radius: var(--a-button-border-radius, 0.125rem);
+  transition: background-color 0.12s, border-color 0.12s, color 0.12s;
+  background-color: transparent;
+  border: 1px solid var(--a-button-border-color, #c0c0c0);
+  color: var(--a-field-text-color, #404040);
+  padding: calc(6px - 1px) calc(10px - 1px);
+  white-space: nowrap;
+}
+.apexrad-pdp-foot-btn:hover { background-color: rgba(0,0,0,.06); }
+
+/* امروز */
+.apexrad-pdp-foot-btn.apexrad-pdp-today {
+  border: none; background: transparent;
+  color: var(--a-palette-primary, #256FFB); padding: 6px 4px;
+}
+.apexrad-pdp-foot-btn.apexrad-pdp-today:hover { text-decoration: underline; background: transparent; }
+
+/* پاک کردن */
+.apexrad-pdp-foot-btn.apexrad-pdp-clear {
+  border: none; background: transparent;
+  color: var(--a-palette-danger, #C73737); padding: 6px 4px;
+}
+.apexrad-pdp-foot-btn.apexrad-pdp-clear:hover { text-decoration: underline; background: transparent; }
+
+/* تأیید — done button */
+.apexrad-pdp-foot-btn.apexrad-pdp-close {
+  background-color: var(--oj-core-color-disabled-1, #f0f0f0);
+  border-color:     var(--oj-core-bg-color-active, #c0c0c0);
+  color:            var(--a-field-text-color, #404040);
+  font-weight:      var(--a-base-font-weight-bold, 700);
+}
+.apexrad-pdp-foot-btn.apexrad-pdp-close:hover {
+  background-color: var(--oj-core-divider-color, #e0e0e0);
+  border-color:     var(--oj-core-color-disabled-2, #a0a0a0);
+}
+
+/* ── Misc ────────────────────────────────────────────────────────── */
+.apexrad-pdp-display-only {
+  display: inline-block; direction: rtl; text-align: right;
+  font-family: var(--a-base-font-family, sans-serif);
+  color: var(--a-field-text-color, #404040); padding: 4px 0;
+}
+
+[class*="a-GV"] .apexrad-pdp-wrapper,
+.a-IG .apexrad-pdp-wrapper { width: 100%; }
+
+.u-RTL .persianDatepicker-ig-dir { direction: ltr; }
+
+@media (max-width: 380px) {
+  .apexrad-pdp-day   { height: 30px; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   INLINE DISPLAY MODE
+   ══════════════════════════════════════════════════════════════════ */
+.apexrad-pdp-wrapper--inline {
+  display:  block;
+  width:    auto;
+}
+.apexrad-pdp-popup--inline {
+  position: relative !important;
+  top:      auto !important;
+  left:     auto !important;
+  width:    auto !important;
+  max-width: 317px;
+  z-index:  1;
+  animation: none;
+  display:  block !important;
+  box-shadow: var(--a-field-container-shadow, 0 2px 8px rgba(0,0,0,.10));
+}
+/* Inline: no close button needed */
+.apexrad-pdp-popup--inline .apexrad-pdp-close { display: none; }
+
+/* ══════════════════════════════════════════════════════════════════
+   HOLIDAY JSON TOOLTIP
+   Shows holiday name on hover via CSS using content:attr(title)
+   ══════════════════════════════════════════════════════════════════ */
+/* Grid needs overflow:visible so tooltip can escape cell bounds */
+.apexrad-pdp-grid,
+.apexrad-pdp-grid-row {
+  overflow: visible;
+}
+.apexrad-pdp-day[title] {
+  position: relative;
+  overflow: visible;
+}
+/* Tooltip bubble */
+.apexrad-pdp-day[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20,20,20,.95);
+  color: #fff;
+  font-size: 0.75rem;
+  font-family: inherit;
+  line-height: 1.4;
+  padding: 5px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 30000;
+  direction: rtl;
+  width: max-content;
+  max-width: 180px;
+  white-space: normal;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+/* Tooltip arrow */
+.apexrad-pdp-day[title]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(20,20,20,.95);
+  pointer-events: none;
+  z-index: 30000;
+}
