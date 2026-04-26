@@ -48,7 +48,7 @@
 
 ### Set NLS DATE
 
-You must to change NLS_CALENDAR , NLS_DATE_FORMAT  [Application / Edit Security Attributes(Database Session)]
+Change NLS_CALENDAR , NLS_DATE_FORMAT  [Application / Edit Security Attributes(Database Session)]
 
 ```
 BEGIN
