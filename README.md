@@ -75,52 +75,52 @@ END;
 
 ### Core
 
-| # | Attribute | Type | Description |
+| # | Attribute | Description |
 |---|---|---|---|
-| 1 | Display Format | Select List | How the date is shown to the user |
-| 2 | Return Format | Text | Format stored in session state (default: same as Display Format) |
-| 3 | Show Persian Digits | Checkbox | Render digits as Eastern Arabic numerals |
-| 4 | Show Today Button | Checkbox | Show a "Today" shortcut button |
-| 5 | Show Clear Button | Checkbox | Show a clear/reset button |
-| 6 | Placeholder Text | Text | Input placeholder (default: انتخاب تاریخ) |
+| 1 | Display Format | How the date is shown to the user |
+| 2 | Return Format | Format stored in session state (default: same as Display Format) |
+| 3 | Show Persian Digits | Render digits as Eastern Arabic numerals |
+| 4 | Show Today Button | Show a "Today" shortcut button |
+| 5 | Show Clear Button | Show a clear/reset button |
+| 6 | Placeholder Text | Input placeholder (default: انتخاب تاریخ) |
 
 ### Date Constraints
 
-| # | Attribute | Type | Description |
+| # | Attribute | Description |
 |---|---|---|---|
-| 7 | Minimum Date | Select List | `None` / `Item` / `Static` |
-| 8 | Minimum Item | Page Item | Page item holding the minimum date value |
-| 9 | Minimum Static | Text | Fixed minimum date in Return Format |
-| 10 | Maximum Date | Select List | `None` / `Item` / `Static` |
-| 11 | Maximum Item | Page Item | Page item holding the maximum date value |
-| 12 | Maximum Static | Text | Fixed maximum date in Return Format |
+| 7 | Minimum Date | `None` / `Item` / `Static` |
+| 8 | Minimum Item | Page item holding the minimum date value |
+| 9 | Minimum Static | Fixed minimum date in Return Format |
+| 10 | Maximum Date | `None` / `Item` / `Static` |
+| 11 | Maximum Item | Page item holding the maximum date value |
+| 12 | Maximum Static | Fixed maximum date in Return Format |
 
 ### Display Options
 
-| # | Attribute | Type | Description |
+| # | Attribute | Description |
 |---|---|---|---|
-| 13 | Show Time | Checkbox | Enable HH:MM time picker |
-| 14 | Allow Manual Input | Checkbox | Allow the user to type a date |
-| 15 | Show On | Select List | `Button` or `Focus` |
-| 17 | Disable Holiday | Checkbox | Block selection of holidays and Fridays |
-| 18 | Show Year | Checkbox | Show year spinner in header |
-| 19 | Show Month | Checkbox | Show month label in header |
-| 20 | Display As | Select List | `Popup` or `Inline` |
-| 24 | Calendar Year | Select List | `Jalali` (جلالی) or `Imperial` (شاهنشاهی) |
+| 13 | Show Time | Enable HH:MM time picker |
+| 14 | Allow Manual Input | Allow the user to type a date |
+| 15 | Show On | `Button` or `Focus` |
+| 17 | Disable Holiday | Block selection of holidays and Fridays |
+| 18 | Show Year | Show year spinner in header |
+| 19 | Show Month | Show month label in header |
+| 20 | Display As | `Popup` or `Inline` |
+| 24 | Calendar Year | `Jalali` (جلالی) or `Imperial` (شاهنشاهی) |
 
 ### Exception & Holiday Dates
 
-| # | Attribute | Type | Description |
+| # | Attribute | Description |
 |---|---|---|---|
-| 16 | Exception Dates | Text | Comma-separated dates `YYYY-MM-DD`. Use `#P1_ITEM#` for a page item |
-| 23 | Holiday Dates | Textarea | JSON array of `{"date":"YYYY-MM-DD","name":"..."}`. Use `#P1_ITEM#` for a page item |
+| 16 | Exception Dates | Comma-separated dates `YYYY-MM-DD`. Use `#P1_ITEM#` for a page item |
+| 23 | Holiday Dates | JSON array of `{"date":"YYYY-MM-DD","name":"..."}`. Use `#P1_ITEM#` for a page item |
 
 ### Year & Month Range
 
-| # | Attribute | Type | Description |
+| # | Attribute | Description |
 |---|---|---|---|
-| 21 | Year Range | Text | Comma-separated allowed years e.g. `1404,1405,1406`. Use `#P1_YEARS#` for a page item. When set, year navigation arrows are hidden |
-| 22 | Month Range | Text | Comma-separated allowed months (1–12) e.g. `1,3,6`. Use `#P1_MONTHS#` for a page item. When set, month navigation arrows are hidden |
+| 21 | Year Range | Comma-separated allowed years e.g. `1404,1405,1406`. Use `#P1_YEARS#` for a page item. When set, year navigation arrows are hidden |
+| 22 | Month Range | Comma-separated allowed months (1–12) e.g. `1,3,6`. Use `#P1_MONTHS#` for a page item. When set, month navigation arrows are hidden |
 
 ---
 
@@ -204,22 +204,3 @@ For support, custom development, or enterprise services:
 
 ## Changelog
 
-### v24.2.0 (2026)
-- Renamed to **APEXRAD Persian Date Picker(Jalali)**
-- Added `#P1_ITEM#` dynamic page item reference for Exception Dates, Holiday Dates, Year Range, Month Range
-- Year / Month navigation arrows automatically hidden when range is set via page item
-- Imperial year display for Interactive Grid read-only cells
-- Security check: plugin refuses to load if internal name is tampered with
-- Holiday API support
-- APEX 24.2 compatibility verified
-
-### v2.2.6
-- Min/Max Date: None / Item / Static pattern
-- Holiday Dates JSON with tooltip
-- Calendar Year: Jalali / Imperial
-- Interactive Grid support with cascade LOV
-- Popup positioning fix using `getBoundingClientRect`
-
-### v2.1.0
-- Initial public release
-- Basic Jalali date picker with APEX plugin framework integration
