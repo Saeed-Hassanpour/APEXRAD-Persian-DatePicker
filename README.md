@@ -76,7 +76,7 @@ END;
 ### Core
 
 | # | Attribute | Description |
-|---|---|---|---|
+|---|---|---|
 | 1 | Display Format | How the date is shown to the user |
 | 2 | Return Format | Format stored in session state (default: same as Display Format) |
 | 3 | Show Persian Digits | Render digits as Eastern Arabic numerals |
@@ -87,7 +87,7 @@ END;
 ### Date Constraints
 
 | # | Attribute | Description |
-|---|---|---|---|
+|---|---|---|
 | 7 | Minimum Date | `None` / `Item` / `Static` |
 | 8 | Minimum Item | Page item holding the minimum date value |
 | 9 | Minimum Static | Fixed minimum date in Return Format |
@@ -98,7 +98,7 @@ END;
 ### Display Options
 
 | # | Attribute | Description |
-|---|---|---|---|
+|---|---|---|
 | 13 | Show Time | Enable HH:MM time picker |
 | 14 | Allow Manual Input | Allow the user to type a date |
 | 15 | Show On | `Button` or `Focus` |
@@ -111,14 +111,14 @@ END;
 ### Exception & Holiday Dates
 
 | # | Attribute | Description |
-|---|---|---|---|
+|---|---|---|
 | 16 | Exception Dates | Comma-separated dates `YYYY-MM-DD`. Use `#P1_ITEM#` for a page item |
 | 23 | Holiday Dates | JSON array of `{"date":"YYYY-MM-DD","name":"..."}`. Use `#P1_ITEM#` for a page item |
 
 ### Year & Month Range
 
 | # | Attribute | Description |
-|---|---|---|---|
+|---|---|---|
 | 21 | Year Range | Comma-separated allowed years e.g. `1404,1405,1406`. Use `#P1_YEARS#` for a page item. When set, year navigation arrows are hidden |
 | 22 | Month Range | Comma-separated allowed months (1–12) e.g. `1,3,6`. Use `#P1_MONTHS#` for a page item. When set, month navigation arrows are hidden |
 
@@ -144,8 +144,7 @@ The value is resolved via `apex.item('P1_YEARS').getValue()` **each time the dat
 ```json
 [
   {"date": "1404-01-01", "name": "نوروز"},
-  {"date": "1404-01-13", "name": "سیزده بدر"},
-  {"date": "1404-03-14", "name": "رحلت امام خمینی"}
+  {"date": "1404-01-13", "name": "سیزده بدر"}
 ]
 ```
 
