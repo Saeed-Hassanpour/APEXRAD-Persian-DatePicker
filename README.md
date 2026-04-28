@@ -1,4 +1,4 @@
-# APEXRAD Persian (Jalali) Date Picker — v24.2.0
+# APEXRAD Persian (Jalali) Date Picker Plugin— v24.2.0
 
 > A full-featured Persian (Jalali / Iranian Solar Hijri) date picker plugin for **Oracle APEX 24.2+**
 
