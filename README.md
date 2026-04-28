@@ -13,6 +13,7 @@
 
 [https://oracleapex.com/ords/r/saeedhassanpour/oac/](https://oracleapex.com/ords/r/saeedhassanpour/oac/117)
 
+---
 
 ![](https://github.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker/blob/main/persian-datepicker.png)
 
@@ -21,6 +22,8 @@
 ![](https://github.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker/blob/main/persian-datepicker-display-format.png)
 
 ![](https://github.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker/blob/main/persian-datepicker-settings.png)
+
+---
 
 ## Features
 
