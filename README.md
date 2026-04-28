@@ -6,7 +6,6 @@
 **Website:** [https://apexrad.info](https://apexrad.info)  
 **Contact:** [info@apexrad.info](mailto:info@apexrad.info)  
 **Telegram:** [@SaeedHassanpour](https://t.me/SaeedHassanpour) | [@apexrad](https://t.me/apexrad)  
-**Plugin Internal Name:** `INFO.APEXRAD.PERSIANDATEPICKER`  
 **Supported Components:** Page Items, Interactive Grid Columns
 
 ---
