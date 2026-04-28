@@ -76,12 +76,25 @@ END;
 1. Create a page item
 2. Set **Type** → `APEXRAD Persian Date Picker(Jalali)`
 3. Configure attributes in the right panel
+4. Format Mask : `YYYY/MM/DD HH24:MI`
 
 ### Interactive Grid Column
 
 1. Add a column to your IG region
 2. Set **Type** → `APEXRAD Persian Date Picker(Jalali)`
 3. For Imperial year display in read-only cells, add CSS class `persianDatepicker-ig-imperial` to the column's **CSS Classes** property
+4. CSS Classes : `persianDatepicker-ig-dir` to display Right to Left
+5. Format Mask : `YYYY/MM/DD HH24:MI`
+
+### Interactive Report/ Classic Report Column
+1. Format Mask : `YYYY/MM/DD HH24:MI`
+2. Static-ID : `PERISNA-DATE` to display Right to Left
+3. Static-ID :
+   `td[headers="PERSIAN-DATE"] {
+    direction: ltr;
+}`   
+Tip: In Oracle APEX 26 you can use  `CSS Classes : persianDatepicker-ig-dir`
+4. Display Imperial (شاهنشاهی) : In Query should be added `apexrad_util.jalali_to_imperial({FIELD_NAME},'YYYY/MM/DD HH24:MI'`
 
 ---
 
