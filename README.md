@@ -211,7 +211,6 @@ For support, custom development, or enterprise services:
 
 - **Email:** [info@apexrad.info](mailto:info@apexrad.info)
 - **Website:** [https://apexrad.info](https://apexrad.info)
-- **Telegram:** [@apexrad](https://t.me/apexrad)
 
 ---
 
