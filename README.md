@@ -26,7 +26,7 @@
 | **Jalali Calendar** | Full Persian (Solar Hijri) date support with Jalali month/year names |
 | **Imperial Year** | Optional display in Imperial (Shahanshai) year format (+1180) |
 | **Display / Return Format** | Independent display and return formats (default `YYYY/MM/DD`). Falls back to item Format Mask |
-| **Persian Digits** | Optionally render digits in Eastern Arabic numerals |
+| **Persian Digits** | Optionally render digits in Persian numerals |
 | **Time Picker** | Built-in HH:MM time selector. Session value format: `YYYY/MM/DD HH:MM` |
 | **Manual Input** | User can type a date directly; validates against Min/Max/Holidays |
 | **Show On** | `Button` (icon click) or `Focus` (tab or click on item) |
