@@ -129,25 +129,25 @@ Tip: In Oracle APEX 26 you can use  `CSS Classes : persianDatepicker-ig-dir`
 | 13 | Show Time | Enable HH:MM time picker |
 | 14 | Allow Manual Input | Allow the user to type a date |
 | 15 | Show On | `Button` or `Focus` |
-| 17 | Disable Holiday | Block selection of holidays and Fridays |
-| 18 | Show Year | Show year spinner in header |
-| 19 | Show Month | Show month label in header |
-| 20 | Display As | `Popup` or `Inline` |
-| 24 | Calendar Year | `Jalali` (جلالی) or `Imperial` (شاهنشاهی) |
+| 16 | Disable Holiday | Block selection of holidays and Fridays |
+| 17 | Show Year | Show year spinner in header |
+| 18 | Show Month | Show month label in header |
+| 19 | Display As | `Popup` or `Inline` |
+| 20 | Calendar Year | `Jalali` (جلالی) or `Imperial` (شاهنشاهی) |
 
 ### Exception & Holiday Dates
 
 | # | Attribute | Description |
 |---|---|---|
-| 16 | Exception Dates | Comma-separated dates `YYYY-MM-DD`. Use `#P1_ITEM#` for a page item |
-| 23 | Holiday Dates | JSON array of `{"date":"YYYY-MM-DD","name":"..."}`. Use `#P1_ITEM#` for a page item |
+| 21 | Exception Dates | Comma-separated dates `YYYY-MM-DD`. Use `#P1_ITEM#` for a page item |
+| 22 | Holiday Dates | JSON array of `{"date":"YYYY-MM-DD","name":"..."}`. Use `#P1_ITEM#` for a page item |
 
 ### Year & Month Range
 
 | # | Attribute | Description |
 |---|---|---|
-| 21 | Year Range | Comma-separated allowed years e.g. `1404,1405,1406`. Use `#P1_YEARS#` for a page item. When set, year navigation arrows are hidden |
-| 22 | Month Range | Comma-separated allowed months (1–12) e.g. `1,3,6`. Use `#P1_MONTHS#` for a page item. When set, month navigation arrows are hidden |
+| 23 | Year Range | Comma-separated allowed years e.g. `1404,1405,1406`. Use `#P1_YEARS#` for a page item. When set, year navigation arrows are hidden |
+| 24 | Month Range | Comma-separated allowed months (1–12) e.g. `1,3,6`. Use `#P1_MONTHS#` for a page item. When set, month navigation arrows are hidden |
 
 ---
 
