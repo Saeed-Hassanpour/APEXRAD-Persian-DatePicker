@@ -18,12 +18,12 @@ whenever sqlerror exit sql.sqlcode rollback
 --------------------------------------------------------------------------------
 begin
 wwv_flow_imp.import_begin (
- p_version_yyyy_mm_dd=>'2026.04.28'
-,p_release=>'24.2.0'
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.14'
 ,p_default_workspace_id=>11608675028299052404
 ,p_default_application_id=>252959
 ,p_default_id_offset=>0
-,p_default_owner=>'SAEED'
+,p_default_owner=>'SAH'
 );
 end;
 /
@@ -34,13 +34,13 @@ prompt APPLICATION 252959 - Oracle APEX Persian (Jalali) Date Picker plugin
 --   Application:     252959
 --   Name:            Oracle APEX Persian (Jalali) Date Picker plugin
 --   Date and Time:   22:17 Tuesday April 14, 2026
---   Exported By:     
+--   Exported By:     HA_SAEEDA@YAHOO.COM
 --   Flashback:       0
 --   Export Type:     Component Export
 --   Manifest
 --     PLUGIN: 158223600089946823404
 --   Manifest End
---   Version:         24.2.0
+--   Version:         24.2.14
 --   Instance ID:     63113759365424
 --
 
