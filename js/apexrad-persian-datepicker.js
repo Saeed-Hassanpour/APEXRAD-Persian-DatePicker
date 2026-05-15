@@ -522,6 +522,15 @@ var apexrad = apexrad || {};
         .on('click', '.apexrad-pdp-prev-year',  function() { self._closeDropdown(); self._nav(-1,0); })
         .on('click', '.apexrad-pdp-next-year',  function() { self._closeDropdown(); self._nav( 1,0); })
         .on('click', '.apexrad-pdp-today',      function() { self._closeDropdown(); self._pickToday(); })
+        .on('click', '.apexrad-pdp-time-icon',  function() {
+          // Set current time when clock icon is clicked
+          var now = new Date();
+          self._time.h = now.getHours();
+          self._time.m = now.getMinutes();
+          self._renderTime();
+          self._renderDisplay();
+          self._syncHidden();
+        })
         .on('click', '.apexrad-pdp-clear',      function() { self._closeDropdown(); self.clear(); })
         .on('click', '.apexrad-pdp-close',      function() { self._closeDropdown(); self.close(); })
         .on('click', '.apexrad-pdp-day',        function() {
@@ -929,7 +938,15 @@ var apexrad = apexrad || {};
 
     _pickToday: function() {
       var t = IC.today();
-      if (!this._isDisabled(t)) this._pick(t);
+      if (this._isDisabled(t)) return;
+      // Update the view to show today's month/year
+      this._view = { y: t.y, m: t.m };
+      this._pick(t);
+      // For inline mode, re-render grid so today is highlighted
+      if (this._inline) {
+        this._renderGrid();
+        this._renderTime();
+      }
     },
 
     getValue: function() { return this.$el.val(); },
