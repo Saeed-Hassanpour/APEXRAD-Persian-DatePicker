@@ -1,6 +1,6 @@
 # APEXRAD Persian (Jalali) Date Picker Plugin v24.2.0
 
-> A full-featured Persian (Jalali / Iranian Solar Hijri) date picker plugin for **Oracle APEX 24.2+**
+> A full-featured Persian (Jalali / Iranian Solar Hijri) Date picker plugin for **Oracle APEX 24.2+**
 
 **Author:** Saeed Hassanpour — Paya Shetaban Andisheh (APEXRAD)  
 **Website:** [https://apexrad.info](https://apexrad.info)  
@@ -14,6 +14,8 @@
 [https://oracleapex.com/ords/r/saeedhassanpour/oac/](https://oracleapex.com/ords/r/saeedhassanpour/oac/persian-datepicker-plugin?)
 
 ---
+
+![](https://raw.githubusercontent.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker/master/PersianDatepickerPlugin.gif)
 
 ![](https://github.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker/blob/main/images/persian-datepicker.png)
 
@@ -30,7 +32,7 @@
 | Feature | Description |
 |---|---|
 | **Jalali Calendar** | Full Persian (Solar Hijri) date support with Jalali month/year names |
-| **Imperial Year** | Optional display in Imperial (Shahanshai) year format (+1180) |
+| **Imperial Year** | Optional display in Imperial (Shahanshai) year format |
 | **Display / Return Format** | Independent display and return formats (default `YYYY/MM/DD`). Falls back to item Format Mask |
 | **Persian Digits** | Optionally render digits in Persian numerals |
 | **Time Picker** | Built-in HH:MM time selector. Session value format: `YYYY/MM/DD HH:MM` |
