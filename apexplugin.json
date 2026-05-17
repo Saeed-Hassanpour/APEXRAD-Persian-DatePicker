@@ -1,0 +1,34 @@
+{
+  "name" : "APEXRAD Persian (Jalali) Date Picker",
+  "version" : "24.2.0",
+  "description" : "A full-featured Persian (Jalali / Iranian Solar Hijri) Date picker plugin for Oracle APEX 24.2+",
+  "keywords" : ["Persian (Jalali) Date Picker", "Iranian Solar Hijri Calendar"],
+  "homepage" : "https://github.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker",
+  "bugs" : {
+    "url" : "https://github.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker/issues",
+    "email" : "mr.saeedhassanpour@gmail.com"
+  },
+  "license" : "MIT",
+  "commercial" : "No",
+  "author" : {
+    "name" : "Saeed Hassanpour",
+    "email" : "mr.saeedhassanpour@gmail.com",
+    "url" : "https://apexrad.info/"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker.git"
+  },
+ "oracle" : {
+    "versions" : ["19c", "23ai", "26ai"],
+    "apex" : {
+      "versions" : ["24.2.0", "26.1", "26.2"],
+      "plugin" : {
+        "internalName" : "INFO.APEXRAD.PERSIANDATEPICKER",
+        "type" : "region",
+        "demo" : "https://oracleapex.com/ords/r/saeedhassanpour/oac/persian-datepicker-plugin?",
+        "previewImage" : "https://raw.githubusercontent.com/Saeed-Hassanpour/APEXRAD-Persian-DatePicker/master/PersianDatepickerPlugin.gif"
+      }
+    }
+  }
+}
